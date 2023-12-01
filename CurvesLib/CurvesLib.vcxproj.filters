@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\curves\Curves.h">
+    <ClInclude Include="Curves.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="..\curves\GeneratorCurve.h">
+    <ClInclude Include="GeneratorCurve.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\curves\Curves.cpp">
+    <ClCompile Include="Curves.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="..\curves\GeneratorCurve.cpp">
+    <ClCompile Include="GeneratorCurve.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
