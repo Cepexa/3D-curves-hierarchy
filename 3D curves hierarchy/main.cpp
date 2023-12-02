@@ -82,4 +82,6 @@ int main()
         radius_sum += circle_vec[i]->getRadius();
     std::cout << tab << "sum = " << radius_sum << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
+    
+    system("pause");
 }
