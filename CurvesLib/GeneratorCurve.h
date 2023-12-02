@@ -2,15 +2,6 @@
 #include <random>
 #include "Curves.h"
 
-// псевдоним типа - умный указатель на базовый класс
-using PCurve = std::shared_ptr<Curve3D>;
-// псевдоним типа - умный указатель на Circle3D
-using PCircle = std::shared_ptr<Circle3D>;  
-// псевдоним типа - умный указатель на Ellipse3D
-using PEllipse = std::shared_ptr<Ellipse3D>;
-// псевдоним типа - умный указатель на Helix3D
-using PHelix = std::shared_ptr<Helix3D>;
-
 // генератор объектов - потомков Curve3D
 class GeneratorCurve   
 {

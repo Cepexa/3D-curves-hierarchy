@@ -2,6 +2,7 @@
 #include <math.h>
 #include <iostream>
 constexpr double eps = 1e-6;
+
 struct Point3D { double x{}, y{}, z{}; };
 struct Vector3D { double x{}, y{}, z{}; };
 std::ostream& operator<<(std::ostream& os, const Point3D& p);
@@ -55,4 +56,18 @@ public:
     Point3D  calcPoint(double t) const override;
     Vector3D calcVector(double t) const override;
 };
+
+// псевдоним типа - умный указатель на Point3D
+using PPoint = std::shared_ptr<Point3D>;
+// псевдоним типа - умный указатель на Vector3D
+using PVector = std::shared_ptr<Vector3D>;
+// псевдоним типа - умный указатель на базовый класс Curve3D
+using PCurve = std::shared_ptr<Curve3D>;
+// псевдоним типа - умный указатель на Circle3D
+using PCircle = std::shared_ptr<Circle3D>;
+// псевдоним типа - умный указатель на Ellipse3D
+using PEllipse = std::shared_ptr<Ellipse3D>;
+// псевдоним типа - умный указатель на Helix3D
+using PHelix = std::shared_ptr<Helix3D>;
+
 
