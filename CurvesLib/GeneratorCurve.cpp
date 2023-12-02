@@ -39,7 +39,7 @@ PCurve GeneratorCurve::helix()
     return std::make_shared<Helix3D>(Point3D{ udd(rd), udd(rd), udd(rd) }, radius, step);
 }
 
-PCurve GeneratorCurve::random_shape()
+PCurve GeneratorCurve::random_curve()
 {   
     switch (usd(rd))
     {

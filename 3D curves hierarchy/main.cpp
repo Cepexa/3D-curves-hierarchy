@@ -37,7 +37,7 @@ int main()
         GeneratorCurve generator;
         generator.set_diapason(-20, 20);    // инициализируем диапазон
         for (size_t i{}; i < sz; ++i)
-            curve_vec.emplace_back(generator.random_shape());   // заполняем массив
+            curve_vec.emplace_back(generator.random_curve());   // заполняем массив
     }
     
     outText = "3. Выводим координаты точек Point3D и производные Vector3D всех кривых в контейнере при t=PI/4";
