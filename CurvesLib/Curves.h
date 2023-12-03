@@ -35,11 +35,11 @@ public:
 
 class Ellipse3D : public Curve3D
 {
-    double radi_x{};
-    double radi_y{};
+    double radius_x{};
+    double radius_y{};
 public:
     Ellipse3D() = default;
-    Ellipse3D(const Point3D& c, double radius_x, double radius_y) :Curve3D(c), radi_x{ radius_x }, radi_y{ radius_y } {}
+    Ellipse3D(const Point3D& c, double radius_x, double radius_y) :Curve3D(c), radius_x{ radius_x }, radius_y{ radius_y } {}
     ~Ellipse3D() {}
     Point3D calcPoint(double t) const override;
     Vector3D calcVector(double t) const override;

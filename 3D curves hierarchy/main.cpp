@@ -27,8 +27,9 @@ int main(int argc, char** argv)
                            << typeid(Ellipse3D).name() << ", " 
                            << typeid(Helix3D)  .name() << tab << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
-    
-    int sz = std::abs(atoi(argv[argc - 1]));       // размер первого массива получаю из аргументов команды
+
+    // размер первого массива получаем из аргументов команды (20 по умолчанию, если не указаны аргументы)
+    int sz = argc>1 ? std::abs(atoi(argv[1])) : 20;       
     outText = "2. Заполняем контейнер "+ std::to_string(sz) +" объектами, созданными случайным образом, со случайными параметрами";
     std::cout << tab << outText << tab << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
