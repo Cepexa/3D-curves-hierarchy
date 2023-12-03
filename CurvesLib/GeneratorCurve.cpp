@@ -2,7 +2,7 @@
 
 std::random_device GeneratorCurve::rd;
 
-void GeneratorCurve::set_diapason(double min, double max)   
+void GeneratorCurve::setDiapason(double min, double max)   
 {
     if ((std::abs(max) + std::abs(min)) < 2 * eps)  // если значения диапазона одновременно слишко близки к нулю,
         return;                                     // ничего не меняем
@@ -39,7 +39,7 @@ PCurve GeneratorCurve::helix()
     return std::make_shared<Helix3D>(Point3D{ udd(rd), udd(rd), udd(rd) }, radius, step);
 }
 
-PCurve GeneratorCurve::random_curve()
+PCurve GeneratorCurve::randomCurve()
 {   
     switch (usd(rd))
     {

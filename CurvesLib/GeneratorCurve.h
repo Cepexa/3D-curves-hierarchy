@@ -15,7 +15,7 @@ class GeneratorCurve
     std::uniform_int_distribution<> usd{ circle_t, helix_t };   
 public:
     //изменить диапазон
-    void set_diapason(double min, double max);
+    void setDiapason(double min, double max);
     /* метод генерирует и размещает в динамической памяти объект класса Circle3D и возвращает умный указатель на базовый класс */
     PCurve circle();
     /* метод генерирует и размещает в динамической памяти объект класса Ellipse3D и возвращает умный указатель на базовый класс */
@@ -23,5 +23,5 @@ public:
     /* метод генерирует и размещает в динамической памяти объект класса Helix3D и возвращает умный указатель на базовый класс */
     PCurve helix();
     // метод генерирует случайный объект из доступного набора
-    PCurve random_curve();
+    PCurve randomCurve();
 };

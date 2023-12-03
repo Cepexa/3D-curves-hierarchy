@@ -12,7 +12,7 @@ void printSeparator(std::ostream& os,unsigned int count,char separator = '=') {
     os << std::endl;
 };
 
-int main()
+int main(int argc, char** argv)
 {
     system("chcp 1251 > nul");
     const std::string tab = "   ";
@@ -28,23 +28,23 @@ int main()
                            << typeid(Helix3D)  .name() << tab << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
     
-    constexpr size_t sz = 40;       // размер первого массива
+    int sz = std::abs(atoi(argv[argc - 1]));       // размер первого массива получаю из аргументов команды
     outText = "2. «аполн€ем контейнер "+ std::to_string(sz) +" объектами, созданными случайным образом, со случайными параметрами";
     std::cout << tab << outText << tab << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
-    std::vector<PCurve> curve_vec;   // массив указателей на объекты базового класса Curve3D
+    std::vector<PCurve> curveVec;   // массив указателей на объекты базового класса Curve3D
     {
         GeneratorCurve generator;
-        generator.set_diapason(-20, 20);    // инициализируем диапазон
+        generator.setDiapason(-20, 20);    // инициализируем диапазон
         for (size_t i{}; i < sz; ++i)
-            curve_vec.emplace_back(generator.random_curve());   // заполн€ем массив
+            curveVec.emplace_back(generator.randomCurve());   // заполн€ем массив
     }
     
     outText = "3. ¬ыводим координаты точек Point3D и производные Vector3D всех кривых в контейнере при t=PI/4";
     std::cout << tab << outText << tab << std::endl << std::endl;
     int indx = 0;
     const double t = M_PI / 4;
-    for (auto& pc : curve_vec)
+    for (auto& pc : curveVec)
     {
         std::cout << tab << "index-" << ++indx << "\t" << typeid(*pc).name() << "\t"
                   << pc->calcPoint(t) << tab << pc->calcVector(t) << std::endl << std::endl;
@@ -55,32 +55,32 @@ int main()
     std::cout << tab << outText << tab << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
     // массив указателей на Circle3D из первого контейнера
-    std::vector<PCircle> circle_vec;
-    for (auto& pc : curve_vec)
+    std::vector<PCircle> circleVec;
+    for (auto& pc : curveVec)
       if (typeid(*pc).hash_code() == typeid(Circle3D).hash_code())        // если текущий объект - указатель на Circle3D
-        circle_vec.emplace_back(std::dynamic_pointer_cast<Circle3D>(pc)); // приводим его к указателю на Circle3D
+        circleVec.emplace_back(std::dynamic_pointer_cast<Circle3D>(pc)); // приводим его к указателю на Circle3D
 
     outText = "5. —ортируем второй контейнер в пор€дке возрастани€ радиусов окружностей.";
     std::cout << tab << outText << tab << std::endl;
-    std::sort(circle_vec.begin(), circle_vec.end(), [](const auto& lh, const auto& rh)  // сортируем по радиусу (по возрастанию)
+    std::sort(circleVec.begin(), circleVec.end(), [](const auto& lh, const auto& rh)  // сортируем по радиусу (по возрастанию)
         {
             return lh->getRadius() < rh->getRadius();
         });
     indx = 0;
-    for (auto& pc : circle_vec)
+    for (auto& pc : circleVec)
       std::cout << tab << "index-" << ++indx << "\tr = " << pc->getRadius() << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
     
     outText = "6. ¬ычисл€ем общую сумму радиусов всех кривых во втором контейнере.";
     std::cout << tab << outText << tab << std::endl;
     // сумма радиусов Circle3D
-    double radius_sum{};
+    double radiusSum{};
     int i;
     //вычисление общей суммы радиусов с использованием параллельных вычислений (OpenMP)
-#pragma omp parallel for reduction(+:radius_sum)
-    for (i = 0; i < circle_vec.size(); i++)
-        radius_sum += circle_vec[i]->getRadius();
-    std::cout << tab << "sum = " << radius_sum << std::endl;
+#pragma omp parallel for reduction(+:radiusSum)
+    for (i = 0; i < static_cast<int>(circleVec.size()); i++)
+        radiusSum += circleVec[i]->getRadius();
+    std::cout << tab << "sum = " << radiusSum << std::endl;
     printSeparator(std::cout, outText.length() + 2 * tab.length());
     
     system("pause");
